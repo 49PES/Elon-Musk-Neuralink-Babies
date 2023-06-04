@@ -10,7 +10,7 @@ db_tools.setup()
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template("home_page")
+        return render_template("home_page.html")
     return render_template('login.html') 
 
 @app.route('/login', methods = ['GET','POST'])
@@ -62,6 +62,10 @@ def verify_session():
         if db_tools.verify_account(session['username'], session['password']):
             return True
     return False
+
+@app.route("/survey_redirect")
+def surveyredirect():
+    return render_template("survey.html")
 
 if __name__ == '__main__':
     app.debug = True
