@@ -19,3 +19,8 @@ Finished login functionality. Work on survey for physical attributes.
 Revisions to DD: Specified light/dark mode for app, clarified API usage for personalalized health recs,
 made SMS stretch goal, clarified database table structure
 ==============================================================
+
+DanielL -- 2023-06-04 11:11
+-------------------------------------------------------------
+Finished to-do list. Made health survey. Changed some app styling.
+==============================================================

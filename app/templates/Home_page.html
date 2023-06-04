@@ -20,9 +20,34 @@
 
      <br>
 
-     <form action="/survey_redirect">
-        <input class="btn btn-outline-success" type="submit" value="Access Survey">
-     </form> 
+     <div class=" container rounded-3 border border-2 border-dark my-5 bg-white" style="height:auto;">
+      <div>
+      <h1 class=" h1">To Do List</h1> 
+      <div class="row">
+          <div class=" col-8">
+      <input class=" py-3 form-control shadow" placeholder="input your task" type="text" id="inputText"> 
+          </div>
+          <div class="col-2">
+              <button onclick="addList()" class=" mt-2 btn btn-dark"> Add </button>
+          </div>
+      </div>
+  </div>
+      <hr>
+  <div class="row rounded bg-white">
+      <div class=" col-12"> 
+      <ul class=" list-group" id="list"></ul>
+      </div> 
+  </div> 
+</div>
 
+<form action="/physical_data">
+  <input class="btn btn-outline-primary" type="submit" value="Physcial Survey">
+</form> 
+<br>
+<form action="/survey_redirect">
+  <input class="btn btn-outline-primary" type="submit" value="Health Survey">
+</form> 
+
+<script src = "/static/js/To-Do.js"></script>
 
 </html>

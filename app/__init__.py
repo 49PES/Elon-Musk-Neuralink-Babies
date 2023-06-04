@@ -63,6 +63,10 @@ def verify_session():
             return True
     return False
 
+@app.route("/physical_data")
+def physcials():
+    return render_template("Physcial.html")
+
 @app.route("/survey_redirect")
 def surveyredirect():
     return render_template("survey.html")
