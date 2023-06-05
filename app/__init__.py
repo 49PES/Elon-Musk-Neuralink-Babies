@@ -65,11 +65,18 @@ def verify_session():
 
 @app.route("/physical_data")
 def physcials():
-    return render_template("Physcial.html")
+    return render_template("Physical.html")
 
+@app.route("/physical")
+def physical_form():
+    age = request.form.get("age")
+    height = request.form.get("height")
+    weight = request.form.get("weight")
+    
 @app.route("/survey_redirect")
 def surveyredirect():
     return render_template("survey.html")
+
 
 if __name__ == '__main__':
     app.debug = True

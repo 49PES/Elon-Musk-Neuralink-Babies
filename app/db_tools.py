@@ -19,6 +19,8 @@ def create_table(name, header):
 def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo", users_header)
+    health_header = ("(calories INTEGER, sleep REAL, excercise REAL)")
+    create_table("healthInfo", health_header)
 
 def get_table_list(tableName):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
