@@ -32,17 +32,17 @@
                     Thread</button>
                 <div class="collapse" id="posttext">
                     <div class="card card-body" style="margin-bottom: 10px;">
-                        <form>
+                        <form action="/forum" method="post">
                             <div class="mb-3">
                                 <label for="posttitle" class="form-label">Summary</label>
-                                <input type="text" class="form-control" id="posttitle">
+                                <input type="text" class="form-control" id="posttitle" name="posttitle">
                             </div>
                             <div class="mb-3">
                                 <textarea name="posttext" type="text" class="form-control" rows="5"
                                     cols="80"></textarea>
                             </div>
+                            <button type="submit" value="submit" class="btn btn-primary float-end">Submit</button>
                         </form>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
                 <div class="card" style="width: 80vw;">

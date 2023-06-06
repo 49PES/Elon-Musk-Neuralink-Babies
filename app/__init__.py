@@ -77,6 +77,13 @@ def physical_form():
 def surveyredirect():
     return render_template("survey.html")
 
+@app.route("/forum", methods=['GET','POST'])
+def forum():
+    if request.method == 'POST':
+        print(request.form['posttitle'])
+        print(request.form['posttext'])
+    return render_template("forum.html")
+
 
 if __name__ == '__main__':
     app.debug = True
