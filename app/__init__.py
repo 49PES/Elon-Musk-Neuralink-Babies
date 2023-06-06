@@ -41,7 +41,7 @@ def create_account():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    return render_template("Register.html")
+    return render_template("register.html")
 
 @app.route('/logout')
 def logout():
@@ -65,7 +65,7 @@ def verify_session():
 
 @app.route("/physical_data")
 def physcials():
-    return render_template("Physical.html")
+    return render_template("physical.html")
 
 @app.route("/physical")
 def physical_form():
