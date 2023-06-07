@@ -24,6 +24,11 @@
                 </div>
             </nav>
         </div>
+        
+        <form action="/">
+            <input class="btn btn-outline-danger" type=submit value="Back to home">
+        </form>
+
         <div class="row">
             <div class="col">
                 <button class="btn btn-info float-end collapsed" type="button" data-bs-toggle="collapse"
@@ -32,17 +37,19 @@
                     Thread</button>
                 <div class="collapse" id="posttext">
                     <div class="card card-body" style="margin-bottom: 10px;">
+
                         <form action="/forum" method="post">
                             <div class="mb-3">
                                 <label for="posttitle" class="form-label">Summary</label>
-                                <input type="text" class="form-control" id="posttitle" name="posttitle">
+                                <input type="text" class="form-control" id="posttitle" name="posttitle" placeholder="#goals">
                             </div>
                             <div class="mb-3">
-                                <textarea name="posttext" type="text" class="form-control" rows="5"
+                                <textarea name="posttext" placeholder="Just reached a new milestone" type="text" class="form-control" rows="5"
                                     cols="80"></textarea>
                             </div>
                             <button type="submit" value="submit" class="btn btn-primary float-end">Submit</button>
                         </form>
+
                     </div>
                 </div>
                 <div class="card" style="width: 80vw;">
@@ -62,13 +69,9 @@
                                     <th scope="row">1</th>
                                     <td>
                                         <div style="height:70px; overflow:hidden;">
-                                            <a href="forum/1">
-                                                <p>How do I win against lung cancer</p>
-                                            </a>
-                                            <p>Hi I have severe lung cancer and I was
-                                                wondering
-                                                if there was anyway to 1v1 it into oblivion
-                                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAa </p>
+                                                {% for text in arr %}
+                                                <strong>{{text}}</strong>
+                                                {% endfor %}
                                         </div>
                                     </td>
                                     <td>0</td>
@@ -129,6 +132,6 @@
     </div>
 
 </body>
-<script src="../static/js/Forum.js></script>
+<script src="../static/js/Forum.js"></script>
 
 </html>

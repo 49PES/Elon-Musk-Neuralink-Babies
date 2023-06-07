@@ -13,3 +13,10 @@ def get_nutrition(query):
     else:
         print("Error:", response.status_code, response.text)
 
+def get_reccomendations(age, gender, pregnant, sex, tobacco):
+    url = "https://health.gov/myhealthfinder/api/v3/myhealthfinder.json?" + f"age={age}&sex={gender}&pregnant={pregnant}&sexuallyActive={sex}&tobaccoUse={tobacco}"
+    response = requests.get(url)
+    if response.status_code == requests.codes.ok:
+        return response.text
+    else:
+        print("Error:", response.status_code, response.text)

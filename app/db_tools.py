@@ -19,8 +19,10 @@ def create_table(name, header):
 def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo", users_header)
-    health_header = ("(calories INTEGER, sleep REAL, excercise REAL)")
-    create_table("healthInfo", health_header)
+    thread_header = "(title TEXT, fullText TEXT)"
+    create_table("posts",thread_header)
+    # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
+    # create_table("physcialsInfo", physicals_header)
 
 def get_table_list(tableName):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -51,3 +53,13 @@ def account_exists(username):
         if account[0] == username:
             return True
     return False
+
+def add_story(title, text):
+    query("INSERT INTO posts VALUES (?, ?)", (title, text))
+
+def get_user_stories():
+    comments = []
+    stories = get_table_list("posts")
+    for story in stories:
+        comments.append(story[1])
+    return comments

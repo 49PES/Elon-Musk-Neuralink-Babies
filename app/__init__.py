@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import os
 import db_tools
+import api
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -67,12 +68,16 @@ def verify_session():
 def physcials():
     return render_template("physical.html")
 
-@app.route("/physical")
+@app.route("/physical",methods=['POST'])
 def physical_form():
     age = request.form.get("age")
-    height = request.form.get("height")
-    weight = request.form.get("weight")
-    
+    gender = request.form.get("gender")
+    pregnant = request.form.get("pregnant")
+    tobacco = request.form.get("tobacco")
+    sex = request.form.get("sex")
+    x = api.get_reccomendations(age, gender, pregnant, tobacco, sex)
+    return render_template("reccomendations.html",recs=x)
+
 @app.route("/survey_redirect")
 def surveyredirect():
     return render_template("survey.html")
@@ -80,9 +85,11 @@ def surveyredirect():
 @app.route("/forum", methods=['GET','POST'])
 def forum():
     if request.method == 'POST':
-        print(request.form['posttitle'])
-        print(request.form['posttext'])
-    return render_template("forum.html")
+        title = request.form['posttitle']
+        text = request.form['posttext']
+        db_tools.add_story(title, text)
+        user_inputs = db_tools.get_user_stories()
+    return render_template("forum.html",arr=user_inputs)
 
 
 if __name__ == '__main__':
