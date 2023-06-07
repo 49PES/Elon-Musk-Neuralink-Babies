@@ -85,11 +85,14 @@ def surveyredirect():
 @app.route("/forum", methods=['GET','POST'])
 def forum():
     if request.method == 'POST':
-        title = request.form['posttitle']
-        text = request.form['posttext']
+        title = request.form.get('posttitle')
+        text = request.form.get('posttext')
         db_tools.add_story(title, text)
-        user_inputs = db_tools.get_user_stories()
-    return render_template("forum.html",arr=user_inputs)
+        user_inputs = db_tools.get_table_list("posts")
+        return render_template("forum.html", arr = user_inputs)
+    else:
+        user_inputs = db_tools.get_table_list("posts")
+        return render_template("forum.html", arr = user_inputs)
 
 
 if __name__ == '__main__':

@@ -58,25 +58,31 @@
                             <thead>
                                 <h4>Forum</h4>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Post Contents</th>
                                     <th scope="col">Replies</th>
                                     <th scope="col">Likes</th>
                                 </tr>
                             </thead>
+
                             <tbody>
+
+                                {% for entry in arr %}
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{entry[0]}} </th>
+
                                     <td>
                                         <div style="height:70px; overflow:hidden;">
-                                                {% for text in arr %}
-                                                <strong>{{text}}</strong>
-                                                {% endfor %}
+                                               
+                                                <strong>{{entry[1]}}</strong>
                                         </div>
                                     </td>
+
                                     <td>0</td>
                                     <td>0</td>
                                 </tr>
+                            {% endfor %}
+
                             </tbody>
                         </table>
                     </div>
