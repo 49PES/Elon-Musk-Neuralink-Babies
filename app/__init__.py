@@ -82,17 +82,24 @@ def physical_form():
 def surveyredirect():
     return render_template("survey.html")
 
+@app.route("/health",methods=['POST'])
+def health_form():
+    calories = request.form.get("calories")
+    sleeps = request.form.get("sleeps")
+    wakes = request.form.get("wakes")
+    exercise = request.form.get("excercises")
+    date = request.form.get("date")
+    
+    
+
 @app.route("/forum", methods=['GET','POST'])
 def forum():
     if request.method == 'POST':
-        title = request.form.get('posttitle')
-        text = request.form.get('posttext')
+        title = request.form['posttitle']
+        text = request.form['posttext']
         db_tools.add_story(title, text)
-        user_inputs = db_tools.get_table_list("posts")
-        return render_template("forum.html", arr = user_inputs)
-    else:
-        user_inputs = db_tools.get_table_list("posts")
-        return render_template("forum.html", arr = user_inputs)
+        user_inputs = db_tools.get_user_stories()
+    return render_template("forum.html",arr=user_inputs)
 
 
 if __name__ == '__main__':
