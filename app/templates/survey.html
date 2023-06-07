@@ -21,22 +21,26 @@
 
           <br><br>
 
-          <form class="px-4" action="/physical" method="post">
+          <form class="px-4" action="/health" method="post">
               <div class="form-group mb-2">
                 <div class = "text-center">
                 <h1>Health Survey</h1>
-                <input type="number" name="calories" placeholder="calorie intake">
+                <input type="number" name="calories" min="0" placeholder="calorie intake">
                 <br>
                 <br>
-                <input type = "datetime" name = "sleeps" placeholder="when did you go to sleep?">
+                <label for="sleeps">When did you go to sleep? </label>
+                <input type="datetime-local" name = "sleeps">
                 <br>
                 <br>
-                <input type = "datetime" name = "sleeps" placeholder="when did you wake up?">
+                <label for="wakes">When did you wake up? </label>
+                <input type="datetime-local" name = "wakes">
                 <br>
                 <br>
-                <input type = "number" name = "excercises" placeholder="time spent excercising">
+                <input type = "number" name = "excercises" min="0" placeholder="time spent excercising">
                 <br>
                 <br>
+                <label for="date">Today's Date:</label>
+                <input type="date" id="start" name="date" value="2023-06-07">
               </div>
             </div>
               <br>
