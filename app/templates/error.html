@@ -1,16 +1,37 @@
 <!DOCTYPE html>
- <html>
- 
-   <head>
-   </head>
- 
-   <body>
-     <h1>
-       Error: {{msg}}
-    </h1>
-    <form action="/">
-      <input type=submit value="Back to login">
-    </form>
-   </body>
- 
- </html>
+<html>
+
+<head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container container-fluid text-center">
+    <table>
+      <tr>
+        <h1>
+          Error: {{msg}}
+        </h1>
+      </tr>
+      <tr>
+        <form action="/">
+          <input type=submit value="Back to login">
+        </form>
+      </tr>
+    </table>
+<!-- 
+    I dont know how to resize the input element someone do this  -->
+
+  </div>
+  
+</body>
+
+</html>
