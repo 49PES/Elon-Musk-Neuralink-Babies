@@ -75,8 +75,9 @@ def physical_form():
     pregnant = request.form.get("pregnant")
     tobacco = request.form.get("tobacco")
     sex = request.form.get("sex")
-    x = api.get_reccomendations(age, gender, pregnant, tobacco, sex)
-    return render_template("reccomendations.html",recs=x)
+    des, x = api.get_reccomendations(age, gender, pregnant, tobacco, sex)
+    print(des)
+    return render_template("reccomendations.html",descript = des, recs=x)
 
 @app.route("/survey_redirect")
 def surveyredirect():
