@@ -34,7 +34,7 @@ def get_table_list(tableName):
     return out
 
 def get_posts_row(id):
-    db = sqlite3.connection(DB_FILE, check_same_thread=False)
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     res = c.execute("SELECT * FROM posts WHERE ID = ?", (id,))
     out = res.fetchall()
@@ -71,11 +71,4 @@ def get_user_stories():
     stories = get_table_list("posts")
     for story in stories:
         titles.append(story)
-    return titles
-
-def get_user_story(id):
-    titles = []
-    post = get_posts_row(id)
-    for info in post:
-        titles.append(info)
     return titles
