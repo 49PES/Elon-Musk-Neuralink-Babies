@@ -95,6 +95,8 @@ def health_form():
 
 @app.route("/forum", methods=['GET','POST'])
 def forum():
+    if 'username' not in session:
+        return redirect("/login")
     if request.method == 'POST':
         title = request.form['posttitle']
         text = request.form['posttext']
@@ -104,6 +106,11 @@ def forum():
     else:
          user_inputs = db_tools.get_user_stories()
          return render_template("forum.html",arr=user_inputs)
+    
+@app.route("/<id>")
+def fpost(id):
+    info = db_tools.get_posts_row(id)
+    return info
 
 
 if __name__ == '__main__':
