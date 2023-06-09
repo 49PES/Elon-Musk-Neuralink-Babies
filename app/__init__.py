@@ -99,7 +99,10 @@ def forum():
         text = request.form['posttext']
         db_tools.add_story(title, text)
         user_inputs = db_tools.get_user_stories()
-    return render_template("forum.html",arr=user_inputs)
+        return render_template("forum.html",arr=user_inputs)
+    else:
+         user_inputs = db_tools.get_user_stories()
+         return render_template("forum.html",arr=user_inputs)
 
 
 if __name__ == '__main__':

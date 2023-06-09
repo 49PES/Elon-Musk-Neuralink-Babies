@@ -59,9 +59,7 @@ def add_story(title, text):
 
 def get_user_stories():
     titles = []
-    comments = []
     stories = get_table_list("posts")
     for story in stories:
-        titles.append(story[0])
-        comments.append(story[1])
-    return titles, comments
+        titles.append(story)
+    return titles
