@@ -19,7 +19,7 @@ def create_table(name, header):
 def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo", users_header)
-    thread_header = "(title TEXT, fullText TEXT)"
+    thread_header = "(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, fullText TEXT)"
     create_table("posts",thread_header)
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
     # create_table("physcialsInfo", physicals_header)
@@ -54,8 +54,8 @@ def account_exists(username):
             return True
     return False
 
-def add_story(title, text):
-    query("INSERT INTO posts VALUES (?, ?)", (title, text))
+def add_story(title, author, text):
+    query("INSERT INTO posts (title, author, fullText) VALUES (?, ?, ?)", (title, author, text))
 
 def get_user_stories():
     titles = []

@@ -24,7 +24,7 @@
                 </div>
             </nav>
         </div>
-        
+
         <form action="/">
             <input class="btn btn-outline-danger" type=submit value="Back to home">
         </form>
@@ -41,11 +41,12 @@
                         <form action="/forum" method="post">
                             <div class="mb-3">
                                 <label for="posttitle" class="form-label">Summary</label>
-                                <input type="text" class="form-control" id="posttitle" name="posttitle" placeholder="#goals">
+                                <input type="text" class="form-control" id="posttitle" name="posttitle"
+                                    placeholder="#goals">
                             </div>
                             <div class="mb-3">
-                                <textarea name="posttext" placeholder="Just reached a new milestone" type="text" class="form-control" rows="5"
-                                    cols="80"></textarea>
+                                <textarea name="posttext" placeholder="Just reached a new milestone" type="text"
+                                    class="form-control" rows="5" cols="80"></textarea>
                             </div>
                             <button type="submit" value="submit" class="btn btn-primary float-end">Submit</button>
                         </form>
@@ -69,19 +70,23 @@
 
                                 {% for entry in arr %}
                                 <tr>
-                                    <th scope="row">{{entry[0]}} </th>
+                                    <th scope="row">
+                                        <a href="{{entry[1]}}">{{entry[1]}}</a>
+                                        <br>
+                                         By {{entry[2]}}
+                                    </th>
 
                                     <td>
                                         <div style="height:70px; overflow:hidden;">
-                                               
-                                                <strong>{{entry[1]}}</strong>
+
+                                            <strong>{{entry[3]}}</strong>
                                         </div>
                                     </td>
 
                                     <td>0</td>
                                     <td>0</td>
                                 </tr>
-                            {% endfor %}
+                                {% endfor %}
 
                             </tbody>
                         </table>
@@ -119,7 +124,7 @@
                                 <tr>
                                     <th scope="row">Posts</th>
                                     <td id="numPosts">
-                                        0
+                                        {{numbposts}}
                                     </td>
                                 </tr>
                                 <tr>

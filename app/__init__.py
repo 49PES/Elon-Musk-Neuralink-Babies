@@ -97,9 +97,9 @@ def forum():
     if request.method == 'POST':
         title = request.form['posttitle']
         text = request.form['posttext']
-        db_tools.add_story(title, text)
+        db_tools.add_story(title, session.get('username'), text)
         user_inputs = db_tools.get_user_stories()
-        return render_template("forum.html",arr=user_inputs)
+        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs))
     else:
          user_inputs = db_tools.get_user_stories()
          return render_template("forum.html",arr=user_inputs)
@@ -107,4 +107,4 @@ def forum():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run() 
