@@ -50,3 +50,8 @@ BrianY -- 2023-06-09 15:00
 made home_page and physical survey page ok to look at 
 added specific pages for each forum post
 ==============================================================
+
+DanielL -- 2023-06-09 16:17
+-------------------------------------------------------------
+Finished API call for reccomendations and the corresponding reccomendations page.
+==============================================================
