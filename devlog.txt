@@ -44,3 +44,9 @@ DanielL -- 2023-06-06 21:44
 -------------------------------------------------------------
 API call works with physcial survey to render reccomendations page. Work on forum and database.
 ==============================================================
+
+BrianY -- 2023-06-09 15:00
+-------------------------------------------------------------
+made home_page and physical survey page ok to look at 
+added specific pages for each forum post
+==============================================================
