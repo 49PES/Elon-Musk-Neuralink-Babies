@@ -87,8 +87,12 @@ def surveyredirect():
 def health_form():
     calories = request.form.get("calories")
     
+
     sleeps = request.form.get("sleeps")
     wakes = request.form.get("wakes")
+
+    exercise = request.form.get("excercises")
+    date = request.form.get("date")
 
     # Convert the strings to datetime objects
     start_time = datetime.strptime(sleeps, '%Y-%m-%dT%H:%M')
@@ -98,10 +102,12 @@ def health_form():
     time_difference = end_time - start_time
 
     # Calculate the number of minutes elapsed
-    minutes_elapsed = time_difference.total_seconds() / 60
+    sleep_minutes = time_difference.total_seconds() / 60
     
-    exercise = request.form.get("excercises")
-    date = request.form.get("date")
+
+    db_tools.add_health_info(session.get('username'), sleep_minutes, calories, exercise, date)
+    return render_template("health_info.html")
+
     
     
 
