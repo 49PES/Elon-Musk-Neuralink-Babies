@@ -58,5 +58,10 @@ Finished API call for reccomendations and the corresponding reccomendations page
 
 VanshS -- 2023-06-10 16:48
 -------------------------------------------------------------
-Worked on setting up charts for health survey
+Worked on setting up charts for health survey.
+==============================================================
+
+VanshS -- 2023-06-10 18:05
+-------------------------------------------------------------
+Created three charts for health - calorie consumption, sleep, exercise. 
 ==============================================================

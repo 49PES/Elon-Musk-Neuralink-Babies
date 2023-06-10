@@ -23,8 +23,10 @@ def setup():
     thread_header = "(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, fullText TEXT)"
     create_table("posts",thread_header)
 
-    health_header = "(user TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER, date TEXT)"
+    health_header = "(username TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER, date TEXT)"
     create_table("health_info",health_header)
+
+
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
     # create_table("physcialsInfo", physicals_header)
 
@@ -70,8 +72,8 @@ def account_exists(username):
 def add_story(title, author, text):
     query("INSERT INTO posts (title, author, fullText) VALUES (?, ?, ?)", (title, author, text))
 
-def add_health_info(user, sleep, calories, exercise, date):
-    query("INSERT INTO health_info (user, sleep, calories, exercise, date) VALUES (?, ?, ?, ?, ?)", (user, sleep, calories, exercise, date))
+def add_health_info(username, sleep, calories, exercise, date):
+    query("INSERT INTO health_info (username, sleep, calories, exercise, date) VALUES (?, ?, ?, ?, ?)", (username, sleep, calories, exercise, date))
 
 def get_user_stories():
     titles = []
