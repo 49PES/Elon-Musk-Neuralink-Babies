@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import os
 import db_tools
 import api
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -85,8 +86,20 @@ def surveyredirect():
 @app.route("/health",methods=['POST'])
 def health_form():
     calories = request.form.get("calories")
+    
     sleeps = request.form.get("sleeps")
     wakes = request.form.get("wakes")
+
+    # Convert the strings to datetime objects
+    start_time = datetime.strptime(sleeps, '%Y-%m-%dT%H:%M')
+    end_time = datetime.strptime(wakes, '%Y-%m-%dT%H:%M')
+
+    # Calculate the timedelta between the two datetime values
+    time_difference = end_time - start_time
+
+    # Calculate the number of minutes elapsed
+    minutes_elapsed = time_difference.total_seconds() / 60
+    
     exercise = request.form.get("excercises")
     date = request.form.get("date")
     
