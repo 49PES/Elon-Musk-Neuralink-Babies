@@ -18,41 +18,41 @@
 
 <body>
 
-  <div class="container container-fluid text-center" style="width: 50%; margin-bottom: 2%;">
-    <div class="card">
-      <div class="card-header bg-info" style="margin-bottom: 2%;">
-        <h5 class="card-title text-white" id="physical">Physicals</h5>
+  <div class="container container-fluid text-center" style="width: 75%; margin-bottom: 2%;">
+    <div class="card text-center">
+      <div class="card-header bg-success" style="margin-bottom: 2%;">
+        <h5 style="font-family: monospace;" class="card-title text-white">Physicals</h5>
       </div>
 
 
       <form class="px-4" action="/physical" method="post">
         <div class="form-group mb-2">
           <div class="text-center">
-            <p>What is your age</p>
+            <p style="font-family: monospace;">What is your age?</p>
             <input type="number" name="age" min="1" max="100" placeholder="Age" class="rounded">
-            <p>Are you male or female?</p>
+            <p style="font-family: monospace;">Are you male or female?</p>
             <input type="radio" id="gender" name="gender" value="male">
             <label for="male">Male</label><br>
             <input type="radio" id="gender" name="gender" value="female">
             <label for="female">Female</label><br><br>
 
-            <p>Are you pregnant?</p>
-            <input type="radio" id="pregnant" name="pregnant" value="yes">
-            <label for="yes">Yes</label><br>
-            <input type="radio" id="pregnant" name="pregnant" value="no">
-            <label for="no">No</label><br><br>
-
-            <p>Do you use tobacco products?</p>
+            <p style="font-family: monospace;">Do you use tobacco products?</p>
             <input type="radio" id="tobacco" name="tobacco" value="yes">
             <label for="yes">Yes</label><br>
             <input type="radio" id="tobacco" name="tobacco" value="no">
             <label for="no">No</label><br><br>
 
-            <p>Are you sexually active?</p>
+            <p style="font-family: monospace;">Are you sexually active?</p>
             <input type="radio" id="sex" name="sex" value="yes">
             <label for="yes">Yes</label><br>
             <input type="radio" id="tobacco" name="tobacco" value="no">
-            <label for="no">No</label><br>
+            <label for="no">No</label><br><br>
+
+            <p style="font-family: monospace;">Are you pregnant?</p>
+            <input type="radio" id="pregnant" name="pregnant" value="yes">
+            <label for="yes">Yes</label><br>
+            <input type="radio" id="pregnant" name="pregnant" value="no">
+            <label for="no">No</label><br><br>
           </div>
         </div>
 

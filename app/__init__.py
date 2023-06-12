@@ -3,6 +3,7 @@ import os
 import db_tools
 import api
 from datetime import datetime
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -92,7 +93,9 @@ def health_form():
     wakes = request.form.get("wakes")
 
     exercise = request.form.get("excercises")
-    date = request.form.get("date")
+    
+    date_td = str(date.today())
+    print(date_td)
 
     # Convert the strings to datetime objects
     start_time = datetime.strptime(sleeps, '%Y-%m-%dT%H:%M')
@@ -105,7 +108,7 @@ def health_form():
     sleep_minutes = time_difference.total_seconds() / 60
     
 
-    db_tools.add_health_info(session.get('username'), sleep_minutes, calories, exercise, date)
+    db_tools.add_health_info(session.get('username'), sleep_minutes, calories, exercise, date_td)
     return render_template("health_info.html")
 
     

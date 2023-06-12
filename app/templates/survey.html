@@ -9,61 +9,53 @@
 
 <body>
 
-    <div class="mx-0 mx-sm-auto">
-      <div class="card">
-        <div class="card-header bg-primary">
-          <h5 class="card-title text-white mt-2" id="exampleModalLabel">Physicals</h5>
-        </div>
-        <div class="modal-body">
-          <div class="text-center">
-            <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
-          </div>
 
-          <br><br>
-
-          <form class="px-4" action="/health" method="post">
-              <div class="form-group mb-2">
-                <div class = "text-center">
-                <h1>Health Survey</h1>
-                <input type="number" name="calories" min="0" placeholder="calorie intake">
-                <br>
-                <br>
-                <label for="sleeps">When did you go to sleep? </label>
-                <input type="datetime-local" name = "sleeps">
-                <br>
-                <br>
-                <label for="wakes">When did you wake up? </label>
-                <input type="datetime-local" name = "wakes">
-                <br>
-                <br>
-                <input type = "number" name = "excercises" min="0" placeholder="time spent excercising">
-                <br>
-                <br>
-                <label for="date">Today's Date:</label>
-                <input type="date" id="start" name="date" value="2023-06-07">
-              </div>
-            </div>
-              <br>
-              <br>
-              <br>
-
-              <div class="card-footer text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-          </form>
-
-        </div>
+  <div class="container container-fluid text-center" style="width: 75%; margin-bottom: 2%;">
+    <div class="card text-center">
+      <div class="card-header bg-success" style="margin-bottom: 2%;">
+        <h5 style="font-family: monospace;" class="card-title text-white" id="health">Health Survey</h5>
       </div>
+
+        <form class="px-4" action="/health" method="post">
+          <div class="form-group mb-2">
+            <div class = "text-center">
+            <h1>Health Survey</h1>
+            <br>
+            <p style="font-family: monospace;">Amount of Calories Consumed Today?</p>
+            <input type="number" name="calories" min="0" placeholder="2000" class="rounded">
+            <br>
+            <br>
+
+            <p style="font-family: monospace;">What Time Did You Go To Sleep?</p>
+            <input type="datetime-local" name = "sleeps" class="rounded">
+            <br>
+            <br>
+            
+            <p style="font-family: monospace;">What Time Did You Wake Up From Your Slumber?</p>
+            <input type="datetime-local" name = "wakes" class="rounded">
+            <br>
+            <br>
+            
+            <p style="font-family: monospace;">How Many Hours Did You Spend Excercising?</p>
+            <input type = "number" name = "excercises" min="0" placeholder="1">
+            <br>
+            <br>
+
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
     </div>
+  </div>
 
-
-    <br>
+    <div class = "text-center">
     <form action="/">
       <input class="btn btn-outline-danger" type=submit value="Back to home">
   </form>
     </div>
-
-
+  </div>
 
 </body>
 

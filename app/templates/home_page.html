@@ -8,35 +8,38 @@
 </head>
 
 <body>
+
   <div class="container container-fluid text-center">
     <h1 style="font-family: monospace; margin-bottom: 5%;">
       Elon Musk Neuralink Babies
     </h1>
-
-    <div class="row mb-3 justify-content-center">
-      <div class="col-auto">
-        <form action="/physical_data">
-          <input class="btn btn-outline-primary" type="submit" value="Physcial Survey">
-        </form>
-      </div>
-      <div class="col-auto">
-        <form action="/survey_redirect">
-          <input class="btn btn-outline-primary" type="submit" value="Health Survey">
-        </form>
-      </div>
-      <div class="col-auto">
-        <form action="/forum">
-          <input class="btn btn-outline-primary" type="submit" value="Health Forum">
-        </form>
-      </div>
-      <div class="col-auto">
-        <form action="/logout">
-          <input class="btn btn-outline-danger" type="submit" value="Log out">
-        </form>
-      </div>
-    </div>
-
   </div>
+  <div class="ml-auto">
+    <form action="/logout">
+      <input class="btn btn-outline-danger" type="submit" value="Log out">
+    </form>
+  </div>
+
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Elon Musk Neuralink Babies</a>
+        <ul class="navbar-nav navHeaderCollapse">
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/physical_data">Physicals and Advice</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/survey_redirect">Health Survey</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style = "color : black" href="/forum">Forum</a>
+          </li>
+        </ul>
+    </div>
+  </nav>
 
   <div class=" container rounded-3 border border-2 border-dark my-5 bg-white text-center" style="height:auto;">
     <div>
