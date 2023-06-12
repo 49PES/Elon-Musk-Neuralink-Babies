@@ -124,11 +124,13 @@ def forum():
     if request.method == 'POST':
         title = request.form['posttitle']
         text = request.form['posttext']
-        user_inputs = db_tools.get_user_stories()
         db_tools.add_story(title, session.get('username'), text)
+        user_inputs = db_tools.get_user_stories()
+        print(user_inputs)
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     else:
         user_inputs = db_tools.get_user_stories()
+        print(user_inputs)
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     
 @app.route("/<id>", methods=['GET','POST'])

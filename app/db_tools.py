@@ -19,7 +19,7 @@ def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo", users_header)
 
-    thread_header = "(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, fullText TEXT)"
+    thread_header = "(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, fullText TEXT, replies INTEGER)"
     create_table("posts",thread_header)
 
     thread_reply = "(id INTEGER, author TEXT, fulltext TEXT)"
@@ -69,6 +69,11 @@ def get_replies():
 
 def add_reply(id, author, text):
     query("INSERT INTO replies VALUES (?, ?, ?)", (id, author, text))
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    c.execute("UPDATE posts SET replies = replies + 1 WHERE id = ?", (id,))
+    db.commit()
+    db.close()
 
 def add_account(username, password):
     if not(account_exists(username)):
@@ -92,7 +97,7 @@ def account_exists(username):
     return False
 
 def add_story(title, author, text):
-    query("INSERT INTO posts (title, author, fullText) VALUES (?, ?, ?)", (title, author, text))
+    query("INSERT INTO posts (title, author, fullText, replies) VALUES (?, ?, ?, ?)", (title, author, text, 0))
 
 def add_health_info(date, sleep, calories, exercise):
     query("INSERT INTO health_info (date, sleep, calories, exercise) VALUES (?, ?, ?, ?)", (date, sleep, calories, exercise))
