@@ -23,6 +23,9 @@ def setup():
     thread_header = "(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT, fullText TEXT)"
     create_table("posts",thread_header)
 
+    thread_reply = "(id INTEGER, author TEXT, fulltext TEXT)"
+    create_table("replies", thread_reply)
+
     health_header = "(username TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER, date TEXT)"
     create_table("health_info",health_header)
 
@@ -47,6 +50,27 @@ def get_posts_row(id):
     db.commit()
     db.close()
     return out
+
+def get_reply_row(id):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    res = c.execute("SELECT * FROM replies WHERE ID = ?", (id,))
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
+
+def get_replies():
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    res = c.execute("SELECT * FROM replies")
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
+
+def add_reply(id, author, text):
+    query("INSERT INTO replies VALUES (?, ?, ?)", (id, author, text))
 
 def add_account(username, password):
     if not(account_exists(username)):

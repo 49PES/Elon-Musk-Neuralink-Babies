@@ -116,22 +116,34 @@ def health_form():
 
 @app.route("/forum", methods=['GET','POST'])
 def forum():
+    forumreplies = len(db_tools.get_replies())
+    user_inputs = db_tools.get_user_stories()
     if 'username' not in session:
         return redirect("/login")
     if request.method == 'POST':
         title = request.form['posttitle']
         text = request.form['posttext']
         db_tools.add_story(title, session.get('username'), text)
-        user_inputs = db_tools.get_user_stories()
-        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs))
+        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     else:
-         user_inputs = db_tools.get_user_stories()
-         return render_template("forum.html",arr=user_inputs)
+        print(forumreplies)
+        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     
-@app.route("/<id>")
+@app.route("/<id>", methods=['GET','POST'])
 def fpost(id):
-    info = db_tools.get_posts_row(id)
-    return info
+    if 'username' not in session:
+        return redirect("/login")
+    if request.method == 'POST':
+        text = request.form['posttext']
+        info = db_tools.get_posts_row(id)
+        db_tools.add_reply(id, session.get('username'), text)
+        replies = db_tools.get_reply_row(id)
+        return render_template("forumpost.html", arr = info, replies = replies, id = id)
+    else:
+        info = db_tools.get_posts_row(id)
+        user_inputs = db_tools.get_user_stories()
+        replies = db_tools.get_reply_row(id)
+        return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id)
 
 
 if __name__ == '__main__':
