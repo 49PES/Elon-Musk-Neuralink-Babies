@@ -57,7 +57,17 @@
       </div>
     </div>
   </div>
+  <div class = "container">
+    <div id="chart_div">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+          var data = JSON.parse('{{health_contents | tojson }}');
+        </script>
+        <script type="text/javascript" src="../static/js/health.js"></script> 
+    </div>
+  </div>
 </body>
+
 
 <script src="/static/js/To-Do.js"></script>
 

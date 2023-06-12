@@ -13,7 +13,8 @@ db_tools.setup()
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template("home_page.html")
+        health_contents = db_tools.get_table_list("health_info")
+        return render_template("home_page.html",health_contents = health_contents)
     return render_template('login.html') 
 
 @app.route('/login', methods = ['GET','POST'])
@@ -108,10 +109,10 @@ def health_form():
     # Calculate the number of minutes elapsed
     sleep_minutes = time_difference.total_seconds() / 60
     
-    db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
+    # db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
     health_contents = db_tools.get_table_list("health_info")
     print(health_contents)
-    return render_template("health_info.html",health_contents = health_contents)
+    return render_template("home_page.html",health_contents = health_contents)
 
 @app.route("/diary")
 def diary():
