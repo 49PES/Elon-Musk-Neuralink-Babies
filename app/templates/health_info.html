@@ -6,14 +6,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 
     </head>
-    <body onload=init()>
+
+    <div class = "container">
+        <div id="chart_div">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script>
+              var data = JSON.parse('{{health_contents | tojson }}');
+            </script>
+            <script type="text/javascript" src="../static/js/health.js"></script> 
+        </div>
+    </div>
+    <br>
+    <form action="/">
+        <input class="btn btn-outline-danger" type="submit" value="Back to home">
+     </form> 
+    <!-- <body onload=init()>
         <canvas id="calories"></canvas>
         <canvas id="sleep"></canvas>
         <canvas id="exercise"></canvas>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="../static/js/health.js"></script>
-    </body>
+    </body> -->
 
 </html>
 

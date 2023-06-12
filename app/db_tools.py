@@ -1,4 +1,3 @@
-import sqlite3
 
 DB_FILE = "data.db"
 
@@ -26,9 +25,8 @@ def setup():
     thread_reply = "(id INTEGER, author TEXT, fulltext TEXT)"
     create_table("replies", thread_reply)
 
-    health_header = "(username TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER, date TEXT)"
+    health_header = "(date TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER)"
     create_table("health_info",health_header)
-
 
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
     # create_table("physcialsInfo", physicals_header)
@@ -96,8 +94,8 @@ def account_exists(username):
 def add_story(title, author, text):
     query("INSERT INTO posts (title, author, fullText) VALUES (?, ?, ?)", (title, author, text))
 
-def add_health_info(username, sleep, calories, exercise, date):
-    query("INSERT INTO health_info (username, sleep, calories, exercise, date) VALUES (?, ?, ?, ?, ?)", (username, sleep, calories, exercise, date))
+def add_health_info(date, sleep, calories, exercise):
+    query("INSERT INTO health_info (date, sleep, calories, exercise) VALUES (?, ?, ?, ?)", (date, sleep, calories, exercise))
 
 def get_user_stories():
     titles = []

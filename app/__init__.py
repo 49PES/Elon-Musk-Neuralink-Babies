@@ -6,7 +6,7 @@ from datetime import datetime
 from datetime import date
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = b'\xed|@\x89\xbf\xb1<\x06\x81\xf4R\x8b!\xad\xe7T\x11Gb\x8c\xc9x3(vsN\xa0\xfb\xef\xc9\x9e'
 
 db_tools.setup()
 
@@ -94,7 +94,8 @@ def health_form():
 
     exercise = request.form.get("excercises")
     
-    date_td = str(date.today())
+    #date_td = str(date.today())
+    date_td = request.form.get("date")
     #print(date_td)
 
     # Convert the strings to datetime objects
@@ -107,9 +108,10 @@ def health_form():
     # Calculate the number of minutes elapsed
     sleep_minutes = time_difference.total_seconds() / 60
     
-
-    db_tools.add_health_info(session.get('username'), sleep_minutes, calories, exercise, date_td)
-    return render_template("health_info.html")
+    db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
+    health_contents = db_tools.get_table_list("health_info")
+    print(health_contents)
+    return render_template("health_info.html",health_contents = health_contents)
 
     
     

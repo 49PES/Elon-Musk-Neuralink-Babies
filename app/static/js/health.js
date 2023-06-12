@@ -1,94 +1,40 @@
-function init(){
-    
-    // Sample dates and corresponding amount of sleep, exercise, and calorie consumption
-    const dates = ['06/08/2023', '06/10/2023'];
-    const minutesSpentExercising = [120, 90];
-    const minutesSpentSleeping = [500, 630];
-    const calories = [1980, 1760];
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['line']});
 
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
 
-             
-    const calorieData = {
-        labels: dates,
-        datasets: [
-            {
-            label: 'Calories Consumed',
-            data: calories,
-            backgroundColor: 'rgba(192, 75, 192, 0.2)', 
-            borderColor: 'rgba(192, 75, 192, 1)', 
-            borderWidth: 1, 
-            },
-        ],
-        };
-    
-        
-    const ctxCalories = document.getElementById('calories').getContext('2d');
-    new Chart(ctxCalories, {
-    type: 'bar',
-    data: calorieData,
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true, 
-        },
-        },
-    },
-    });
+var getHealthInfo = function(){
+    console.log(data);
+    title = "Health Statistics";
+    //console.log(title);
+    drawChart(data,title);
+    };
 
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(getHealthInfo);
 
+function drawChart(input,title) {
 
-    const sleepData = {
-        labels: dates,
-        datasets: [
-            {
-            label: 'Minutes Spent Sleeping',
-            data: minutesSpentSleeping,
-            backgroundColor: 'rgba(192, 192, 75, 0.2)', 
-            borderColor: 'rgba(192, 192, 75, 1)', 
-            borderWidth: 1, 
-            },
-        ],
-        };
+    // Create the data table.
+    var data_table = new google.visualization.DataTable();
+    data_table.addColumn('string', 'Date');
+    data_table.addColumn('number', 'Time Slept (in minutes');
+    data_table.addColumn('number', 'Calories Consumed');
+    data_table.addColumn('number', 'Time Spent Undergoing Physical Activity');
     
-        
-    const ctxSleep = document.getElementById('sleep').getContext('2d');
-    new Chart(ctxSleep, {
-    type: 'bar',
-    data: sleepData,
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true, 
+    data_table.addRows(input);
+
+    var options = {
+        chart: {
+          title: title,
         },
-        },
-    },
-    });
-   
-    const exerciseData = {
-        labels: dates,
-        datasets: [
-            {
-            label: 'Minutes Spent Exercising',
-            data: minutesSpentExercising,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)', 
-            borderColor: 'rgba(75, 192, 192, 1)', 
-            borderWidth: 1, 
-            },
-        ],
-        };
-    
-        
-    const ctxExercise = document.getElementById('exercise').getContext('2d');
-    new Chart(ctxExercise, {
-    type: 'bar',
-    data: exerciseData,
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true, 
-        },
-        },
-    },
-    });
-    
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+      chart.draw(data_table, google.charts.Line.convertOptions(options));
 }

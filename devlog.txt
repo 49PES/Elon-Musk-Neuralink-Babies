@@ -71,6 +71,11 @@ DanielL -- 2023-06-10 20:43
 Worked on frontend and organization using nav bar and datetime for health survey. Moved app to droplet. 
 ==============================================================
 
+DanielL -- 2023-06-10 20:43
+-------------------------------------------------------------
+Worked on frontend and organization using nav bar and datetime for health survey. Moved app to droplet. Worked on interactive charts, sucessfully connected to db.
+==============================================================
+
 Brian Yang -- 2023-06-11 22:40
 -------------------------------------------------------------
 cleaned up navbar
