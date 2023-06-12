@@ -95,7 +95,7 @@ def health_form():
     exercise = request.form.get("excercises")
     
     date_td = str(date.today())
-    print(date_td)
+    #print(date_td)
 
     # Convert the strings to datetime objects
     start_time = datetime.strptime(sleeps, '%Y-%m-%dT%H:%M')

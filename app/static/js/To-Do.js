@@ -1,7 +1,7 @@
 let input = document.getElementById("inputText");
-        let list= document.getElementById("list");
-        let minimalValue = 1;
-        let listNum = 0;
+let list= document.getElementById("list");
+let minimalValue = 1;
+let listNum = 0;
 
 addList=()=>{
     // get
@@ -22,7 +22,7 @@ addList=()=>{
                 </div>                  
                  </div>    
                 </li> `;
-        input.value=" ";
+        input.value="";
         listNum++;
 
    }
@@ -37,7 +37,6 @@ done=(listId)=>{
     }else{
         current.classList.add("text-decoration-line-through");
     }
-    
 }
 
 filterList=(x)=>{
