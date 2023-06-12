@@ -113,7 +113,9 @@ def health_form():
     print(health_contents)
     return render_template("health_info.html",health_contents = health_contents)
 
-    
+@app.route("/diary")
+def diary():
+    return render_template('diary.html')
     
 
 @app.route("/forum", methods=['GET','POST'])

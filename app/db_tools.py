@@ -28,6 +28,9 @@ def setup():
     health_header = "(date TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER)"
     create_table("health_info",health_header)
 
+    diet_header = "(calories INTEGER, protein INTEGER, carbs INTEGER, fat INTEGER)"
+    create_table("diet_info", diet_header)
+    
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
     # create_table("physcialsInfo", physicals_header)
 

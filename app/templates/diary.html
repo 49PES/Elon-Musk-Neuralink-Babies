@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Diary </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </head>
+    <div class="container mt-5">
+        <body>
+            <div class="container mt-5">
+                <h1 class="mb-4">Daily Diet Diary</h1>
+
+                <table class="table" id="totalNutrition">
+                    <thead>
+                      <tr>
+                        <th>Nutrition</th>
+                        <th>Calories</th>
+                        <th>Protein</th>
+                        <th>Carbs</th>
+                        <th>Fat</th>
+                      </tr>
+                    </thead>
+                    <tbody id="nutritionTotals">
+                        <tr>
+                        <th>Total</th>
+                        <th id="totalCalories">0</th>
+                        <th id="totalProtein">0</th>
+                        <th id="totalCarbs">0</th>
+                        <th id="totalFat">0</th>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                <form id="mealForm">
+                  <div class="mb-3">
+                    <label for="foodName" class="form-label">Food Name</label>
+                    <input type="text" class="form-control" id="foodName" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add to Diary</button>
+                
+                <table class="table mt-4" id="Breakfast">
+                    <thead>
+                        <th>Breakfast</th>
+                    </thead>
+                </table>
+
+                <table class="table mt-4" id="Lunch">
+                    <thead>
+                        <th>Lunch</th>
+                    </thead>
+                </table>
+
+                <table class="table mt-4" id="Dinner">
+                    <thead>
+                        <th>Dinner</th>
+                    </thead>
+                </table>
+
+                <table class="table mt-4" id="Breakfast">
+                    <thead>
+                        <th>Breakfast</th>
+                    </thead>
+                </table>
+
+
+    </body>
+</html>
+
+
+
