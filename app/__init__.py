@@ -119,16 +119,16 @@ def health_form():
 @app.route("/forum", methods=['GET','POST'])
 def forum():
     forumreplies = len(db_tools.get_replies())
-    user_inputs = db_tools.get_user_stories()
     if 'username' not in session:
         return redirect("/login")
     if request.method == 'POST':
         title = request.form['posttitle']
         text = request.form['posttext']
+        user_inputs = db_tools.get_user_stories()
         db_tools.add_story(title, session.get('username'), text)
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     else:
-        print(forumreplies)
+        user_inputs = db_tools.get_user_stories()
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     
 @app.route("/<id>", methods=['GET','POST'])

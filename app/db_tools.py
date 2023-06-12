@@ -1,4 +1,4 @@
-
+import sqlite3
 DB_FILE = "data.db"
 
 def query(sql, extra = None):
