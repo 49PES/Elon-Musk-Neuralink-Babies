@@ -14,7 +14,8 @@ var getHealthInfo = function(){
     calories = data.map(d => d[2]);
     exercise = data.map(d => d[3]);
 
-
+    console.log(dates);
+    console.log(sleep);
     title = "Health Statistics";
     //console.log(title);
     drawChart(data,title);

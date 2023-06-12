@@ -59,7 +59,8 @@ def home():
     username = session['username']
     password = session['password']
     if db_tools.verify_account(username, password):
-        return render_template("home_page.html")
+        health_contents = db_tools.get_table_list("health_info")
+        return render_template("home_page.html",health_contents = health_contents)
 
 def verify_session():
     if 'username' in session and 'password' in session:
