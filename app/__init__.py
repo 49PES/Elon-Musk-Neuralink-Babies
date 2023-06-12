@@ -94,7 +94,8 @@ def health_form():
 
     exercise = request.form.get("excercises")
     
-    date_td = str(date.today())
+    #date_td = str(date.today())
+    date_td = request.form.get("date")
     #print(date_td)
 
     # Convert the strings to datetime objects
@@ -107,9 +108,10 @@ def health_form():
     # Calculate the number of minutes elapsed
     sleep_minutes = time_difference.total_seconds() / 60
     
-
-    db_tools.add_health_info(session.get('username'), sleep_minutes, calories, exercise, date_td)
-    return render_template("health_info.html")
+    db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
+    health_contents = db_tools.get_table_list("health_info")
+    print(health_contents)
+    return render_template("health_info.html",health_contents = health_contents)
 
     
     
