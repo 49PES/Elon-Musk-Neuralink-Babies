@@ -6,7 +6,7 @@ from datetime import datetime
 from datetime import date
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = b'\xed|@\x89\xbf\xb1<\x06\x81\xf4R\x8b!\xad\xe7T\x11Gb\x8c\xc9x3(vsN\xa0\xfb\xef\xc9\x9e'
 
 db_tools.setup()
 
