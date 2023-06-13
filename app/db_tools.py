@@ -31,13 +31,32 @@ def setup():
     diet_header = "(username TEXT, calories INTEGER, protein INTEGER, carbs INTEGER, fat INTEGER)"
     create_table("diet_info", diet_header)
     
+    to_do = "(id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, contents TEXT, points INTEGER)"
+    create_table("event_list",to_do)
+
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
     # create_table("physcialsInfo", physicals_header)
+
+def add_event(user, contents, points):
+    query("INSERT INTO event_list (user, contents, points) VALUES (?, ?, ?)", (user, contents, points))
+
+def delete(id):
+    query("DELETE FROM event_list WHERE id = ?", (id,))
+
 
 def get_table_list(tableName):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
     res = c.execute(f"SELECT * from {tableName}")
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
+
+def get_user_table_list(user):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    res = c.execute(f"SELECT * from event_list WHERE user = ?", (user,))
     out = res.fetchall()
     db.commit()
     db.close()
@@ -137,3 +156,7 @@ def get_user_stories():
     for story in stories:
         titles.append(story)
     return titles
+
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
+c = db.cursor()
+print(c.execute("SELECT username from diet_info"))
