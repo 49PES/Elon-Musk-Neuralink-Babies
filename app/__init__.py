@@ -157,7 +157,7 @@ def forum():
         print(user_inputs)
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies, account = session.get('username'))
     
-@app.route("/forum/<id>", methods=['GET','POST'])
+@app.route("/post/<id>", methods=['GET','POST'])
 def fpost(id):
     if 'username' not in session:
         return redirect("/login")
