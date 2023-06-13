@@ -28,7 +28,7 @@ def setup():
     health_header = "(date TEXT, sleep INTEGER, calories INTEGER, exercise INTEGER)"
     create_table("health_info",health_header)
 
-    diet_header = "(calories INTEGER, protein INTEGER, carbs INTEGER, fat INTEGER)"
+    diet_header = "(username TEXT, calories INTEGER, protein INTEGER, carbs INTEGER, fat INTEGER)"
     create_table("diet_info", diet_header)
     
     # physicals_header = ("(age INTEGER, height INTEGER, weight INTEGER, tobacco TEXT, gender TEXT, sex TEXT, pregnant TEXT)")
@@ -78,9 +78,35 @@ def add_reply(id, author, text):
     db.commit()
     db.close()
 
+def get_totalnutrition(username, category):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    query = "SELECT {} FROM diet_info WHERE username = ?".format(category)
+    c.execute(query, (username,))
+    db.commit()
+    db.close()
+
+def add_nutrition(username, calories, protein, carbs, fat):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+
+    calories_query = "UPDATE diet_info SET calories = calories + {} WHERE username = ?".format(calories)
+    c.execute(calories_query, (username,))
+    protein_query = "UPDATE diet_info SET protein = protein + {} WHERE username = ?".format(protein)
+    c.execute(protein_query, (username,))
+    carbs_query = "UPDATE diet_info SET carbs = carbs + {} WHERE username = ?".format(carbs)
+    c.execute(carbs_query, (username,))
+    fat_query = "UPDATE diet_info SET fat = fat + {} WHERE username = ?".format(fat)
+    c.execute(fat_query, (username,))
+
+    db.commit()
+    db.close()
+
+
 def add_account(username, password):
     if not(account_exists(username)):
         query("INSERT INTO userInfo VALUES (?, ?)", (username, password))
+        query("INSERT INTO diet_info VALUES (?)", (username,))
     else:
         return -1
 

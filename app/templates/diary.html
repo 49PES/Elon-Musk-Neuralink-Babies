@@ -22,20 +22,21 @@
                     <tbody id="nutritionTotals">
                         <tr>
                         <th>Total</th>
-                        <th id="totalCalories">0</th>
-                        <th id="totalProtein">0</th>
-                        <th id="totalCarbs">0</th>
-                        <th id="totalFat">0</th>
+                        <th id="totalCalories"> {{total_calories}} </th>
+                        <th id="totalProtein"> {{total_protein}} </th>
+                        <th id="totalCarbs"> {{total_carbs}} </th>
+                        <th id="totalFat"> {{total_fat}} </th>
                       </tr>
                     </tbody>
                   </table>
 
-                <form id="mealForm">
+                <form action="/diary" id="mealForm" method="POST">
                   <div class="mb-3">
                     <label for="foodName" class="form-label">Food Name</label>
-                    <input type="text" class="form-control" id="foodName" required>
+                    <input type="text" class="form-control" name ="foodName" id="foodName" required>
                   </div>
                   <button type="submit" class="btn btn-primary">Add to Diary</button>
+                </form>
                 
                 <table class="table mt-4" id="Breakfast">
                     <thead>
@@ -57,7 +58,7 @@
 
                 <table class="table mt-4" id="Breakfast">
                     <thead>
-                        <th>Breakfast</th>
+                        <th>Snacks</th>
                     </thead>
                 </table>
 

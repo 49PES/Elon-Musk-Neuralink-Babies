@@ -115,8 +115,29 @@ def health_form():
     print(health_contents)
     return render_template("home_page.html",health_contents = health_contents)
 
-@app.route("/diary")
+@app.route("/diary", methods=['GET','POST'])
 def diary():
+    username = session['username']
+    input_text = ""
+    if request.method == 'POST':
+        input_text = request.form["foodName"]
+        print(input_text)
+    food_contents = api.get_nutrition(input_text)
+    print(food_contents)
+    print(type(food_contents))
+
+    # food_calories = food_contents[0]["calories"]
+    # food_protein = food_contents[0]["protein_g"]
+    # food_carbs = food_contents[0]["carbohydrates_total_g"]
+    # food_fat = food_contents[0]["fat_total_g"]
+
+    # db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
+    # total_calories = db_tools.get_totalnutrition(username, "calories")
+    # total_protein = db_tools.get_totalnutrition(username, "protein")
+    # total_carbs = db_tools.get_totalnutrition(username, "carbs")
+    # total_fat = db_tools.get_totalnutrition(username, "fat")
+
+    # return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
     return render_template('diary.html')
     
 
@@ -137,7 +158,7 @@ def forum():
         print(user_inputs)
         return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
     
-@app.route("/<id>", methods=['GET','POST'])
+@app.route("/forum/<id>", methods=['GET','POST'])
 def fpost(id):
     if 'username' not in session:
         return redirect("/login")
