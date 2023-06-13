@@ -137,3 +137,7 @@ def get_user_stories():
     for story in stories:
         titles.append(story)
     return titles
+
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
+c = db.cursor()
+print(c.execute("SELECT username from diet_info"))

@@ -126,19 +126,19 @@ def diary():
     print(food_contents)
     print(type(food_contents))
 
-    # food_calories = food_contents[0]["calories"]
-    # food_protein = food_contents[0]["protein_g"]
-    # food_carbs = food_contents[0]["carbohydrates_total_g"]
-    # food_fat = food_contents[0]["fat_total_g"]
+    food_calories = food_contents[0]["calories"]
+    food_protein = food_contents[0]["protein_g"]
+    food_carbs = food_contents[0]["carbohydrates_total_g"]
+    food_fat = food_contents[0]["fat_total_g"]
 
-    # db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
-    # total_calories = db_tools.get_totalnutrition(username, "calories")
-    # total_protein = db_tools.get_totalnutrition(username, "protein")
-    # total_carbs = db_tools.get_totalnutrition(username, "carbs")
-    # total_fat = db_tools.get_totalnutrition(username, "fat")
+    db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
+    total_calories = db_tools.get_totalnutrition(username, "calories")
+    total_protein = db_tools.get_totalnutrition(username, "protein")
+    total_carbs = db_tools.get_totalnutrition(username, "carbs")
+    total_fat = db_tools.get_totalnutrition(username, "fat")
 
-    # return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
-    return render_template('diary.html')
+    return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
+    # return render_template('diary.html')
     
 
 @app.route("/forum", methods=['GET','POST'])
