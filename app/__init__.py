@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import os
 import db_tools
 import api
 from datetime import datetime
@@ -110,7 +109,7 @@ def health_form():
     # Calculate the number of minutes elapsed
     sleep_minutes = time_difference.total_seconds() / 60
     
-    # db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
+    db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
     health_contents = db_tools.get_table_list("health_info")
     print(health_contents)
     return render_template("home_page.html",health_contents = health_contents)
@@ -173,6 +172,37 @@ def fpost(id):
         replies = db_tools.get_reply_row(id)
         return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id, account = session.get('username'))
 
+@app.route("/to_do", methods=['GET','POST'])
+def to_do():
+     if request.method == 'POST':
+         if 'username' not in session:
+            return redirect("/login")
+         user = session['username']
+         content = request.form.get("task")
+         #print(content)
+         points = request.form.get("points")
+         db_tools.add_event(user,content,points)
+         events = db_tools.get_user_table_list(user)
+         return render_template("config.html",events = events,user=user,points=completed)
+     else:
+        if 'username' not in session:
+            return redirect("/login")
+        user = session['username']
+        events = db_tools.get_user_table_list(user)
+        return render_template("config.html",events = events,user = user, points=completed)
+
+completed = 0
+
+@app.route('/delete',methods=['POST'])
+def delete():
+    if 'username' not in session:
+        return redirect("/login")
+    global completed
+    list_id = request.form['listId']
+    points = int(request.form['points'])
+    completed += points
+    db_tools.delete(list_id)
+    return redirect("/to_do")
 
 if __name__ == '__main__':
     app.debug = True
