@@ -18,6 +18,7 @@ var getHealthInfo = function(){
 google.charts.setOnLoadCallback(getHealthInfo);
 
 function drawCalories(input,title) {
+    console.log(input)
     var data_table = new google.visualization.DataTable();
     data_table.addColumn('string', 'Date');
     data_table.addColumn('number', '# of Calories Consumed');
@@ -40,6 +41,7 @@ function drawCalories(input,title) {
 }
 
 function drawSleep(input,title) {
+  console.log(input)
   var data_table = new google.visualization.DataTable();
   data_table.addColumn('string', 'Date');
   data_table.addColumn('number', '# of Minutes of Sleep');
@@ -62,6 +64,7 @@ function drawSleep(input,title) {
 }
 
 function drawExercise(input,title) {
+  console.log(input)
   var data_table = new google.visualization.DataTable();
   data_table.addColumn('string', 'Date');
   data_table.addColumn('number', '# of Hours of Exercise');

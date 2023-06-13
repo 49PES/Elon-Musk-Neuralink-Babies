@@ -194,6 +194,7 @@ def fpost(id):
         info = db_tools.get_posts_row(id)
         db_tools.add_reply(id, session.get('username'), text)
         replies = db_tools.get_reply_row(id)
+        user_inputs = db_tools.get_user_stories()
         return render_template("forumpost.html", arr = info, replies = replies, id = id, account = session.get('username'), numbposts = len(user_inputs), numbreplies =  len(db_tools.get_replies()))
     else:
         info = db_tools.get_posts_row(id)
