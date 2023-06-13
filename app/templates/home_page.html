@@ -7,8 +7,17 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
       .flex-container {
-        display: flex;
-      }
+      display: flex;
+      justify-content: center; /* Aligns items horizontally in the center */
+      align-items: center; /* Aligns items vertically in the center */
+    }
+
+    .column {
+      flex: 1;
+      padding: 10px;
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+    }
       </style>
 </head>
 
@@ -44,51 +53,47 @@
     </div>
   </nav>
 
+  <br>
 
-  <div class=" container rounded-3 border border-2 border-dark my-5 bg-white text-center" style="height:auto;">
-    <div>
-      <h1 class="h1" style="font-family: monospace;">To Do List</h1>
-      <hr>
+  <div class = "text-center">
+  <h7 style="font-family: monospace;" >
+    This is a health-centered app that incentivizes completing daily tasks aimed towards a certain fitness goal. It can also be used to track the nutritional info of one's diet throughout the day, such as calorie and protein intake. Some other cool features are an online forum where users can exchange messages and milestones with each other, interactive maps and charts tracking their fitness data, as well as personalized health tips (like meal planning).
+  </h7>
+</div>
 
-      <div class="row" style="margin-bottom: 3%;">
-        <div class=" col-10">
-          <input class=" py-3 form-control shadow" placeholder="Input Your Task" type="text" id="inputText">
-        </div>
-        <div class="col-2">
-          <button onclick="addList()" class="btn btn-dark" style="width:100%; height: 100%;"> Add </button>
-        </div>
-      </div>
-    </div>
-    <div class="row rounded bg-white">
-      <div class=" col-12">
-        <ul class=" list-group" id="list"></ul>
-      </div>
-    </div>
-  </div>
-
-  <div class = "flex-container">
-    
-    <div id="sleep_div">
+  <br>
+  <br>
+  
+  <div class="text-center">
+    <div class="flex-container">
+      
+      <div id="sleep_div" class="column">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script>
           var data = JSON.parse('{{health_contents | tojson }}');
         </script>
         <script type="text/javascript" src="../static/js/health.js"></script> 
-    </div>
-    <div id="calories_div">
+      </div>
+  
+      <div id="calories_div" class="column">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script>
           var data = JSON.parse('{{health_contents | tojson }}');
         </script>
         <script type="text/javascript" src="../static/js/health.js"></script> 
+      </div>
+  
+      <div id="exercise_div" class="column">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+          var data = JSON.parse('{{health_contents | tojson }}');
+        </script>
+        <script type="text/javascript" src="../static/js/health.js"></script> 
+      </div>
     </div>
-    <div id="exercise_div">
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script>
-        var data = JSON.parse('{{health_contents | tojson }}');
-      </script>
-      <script type="text/javascript" src="../static/js/health.js"></script> 
   </div>
+  
+
   </div>
 </body>
 
