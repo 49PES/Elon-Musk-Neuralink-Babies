@@ -165,12 +165,12 @@ def fpost(id):
         info = db_tools.get_posts_row(id)
         db_tools.add_reply(id, session.get('username'), text)
         replies = db_tools.get_reply_row(id)
-        return render_template("forumpost.html", arr = info, replies = replies, id = id, account = session.get('username'))
+        return render_template("forumpost.html", arr = info, replies = replies, id = id, account = session.get('username'), numbposts = len(user_inputs), numbreplies =  len(db_tools.get_replies()))
     else:
         info = db_tools.get_posts_row(id)
         user_inputs = db_tools.get_user_stories()
         replies = db_tools.get_reply_row(id)
-        return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id, account = session.get('username'))
+        return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id, account = session.get('username'), numbreplies = len(db_tools.get_replies()))
 
 @app.route("/to_do", methods=['GET','POST'])
 def to_do():
@@ -203,7 +203,7 @@ def delete():
     completed += points
     db_tools.delete(list_id)
     return redirect("/to_do")
-
+wwwwwwwwwwwwwww
 if __name__ == '__main__':
     app.debug = True
     app.run() 
