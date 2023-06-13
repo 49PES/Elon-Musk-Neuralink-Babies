@@ -138,6 +138,7 @@ def diary():
         db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
         x = db_tools.get_table_list('diet_info')
 
+        print(x)
         total_calories = db_tools.get_totalcalories(username)
         
         for i in total_calories:
