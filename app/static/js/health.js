@@ -1,6 +1,7 @@
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['line']});
 
+
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
@@ -8,42 +9,76 @@ google.charts.load('current', {'packages':['line']});
 var getHealthInfo = function(){
 
     console.log(data);
-
-    dates = data.map(d => d[0]);
-    sleep = data.map(d => d[1]);
-    calories = data.map(d => d[2]);
-    exercise = data.map(d => d[3]);
-
-    console.log(dates);
-    console.log(sleep);
-    title = "Health Statistics";
-    //console.log(title);
-    drawChart(data,title);
+    drawSleep(data,"Sleep Stats");
+    drawCalories(data,"Calories Stats");
+    drawExercise(data,"Exercise Stats");
     };
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(getHealthInfo);
 
-function drawChart(input,title) {
-
-    // Create the data table.
+function drawCalories(input,title) {
     var data_table = new google.visualization.DataTable();
     data_table.addColumn('string', 'Date');
-    data_table.addColumn('number', 'Time Slept (in minutes)');
     data_table.addColumn('number', '# of Calories Consumed');
-    data_table.addColumn('number', 'Hours of Physical Activity');
-    
-    data_table.addRows(input);
+
+    const calories = input.map(subArray => [subArray[0], subArray[2]]);
+
+    data_table.addRows(calories);
 
     var options = {
         chart: {
           title: title,
         },
-        width: 900,
-        height: 500
+        width: 600,
+        height: 350
       };
-
-      var chart = new google.charts.Line(document.getElementById('chart_div'));
+      console.log(calories);
+      var chart = new google.charts.Line(document.getElementById('calories_div'));
 
       chart.draw(data_table, google.charts.Line.convertOptions(options));
+}
+
+function drawSleep(input,title) {
+  var data_table = new google.visualization.DataTable();
+  data_table.addColumn('string', 'Date');
+  data_table.addColumn('number', '# of Minutes of Sleep');
+
+  const sleep = input.map(subArray => [subArray[0], subArray[1]]);
+
+  data_table.addRows(sleep);
+
+  var options = {
+      chart: {
+        title: title,
+      },
+      width: 600,
+      height: 350
+    };
+
+    var chart = new google.charts.Line(document.getElementById('sleep_div'));
+    console.log(sleep);
+    chart.draw(data_table, google.charts.Line.convertOptions(options));
+}
+
+function drawExercise(input,title) {
+  var data_table = new google.visualization.DataTable();
+  data_table.addColumn('string', 'Date');
+  data_table.addColumn('number', '# of Hours of Exercise');
+
+  const exercise = input.map(subArray => [subArray[0], subArray[3]]);
+
+  data_table.addRows(exercise);
+
+  var options = {
+      chart: {
+        title: title,
+      },
+      width: 600,
+      height: 350
+    };
+
+    var chart = new google.charts.Line(document.getElementById('exercise_div'));
+
+    chart.draw(data_table, google.charts.Line.convertOptions(options));
 }
