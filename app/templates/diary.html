@@ -6,13 +6,41 @@
     </head>
     <div class="container mt-5">
         <body>
-            <h1>
-                {{x}}
-                <!-- {{total_calories}}
-                {{total_protein}}
-                {{total_carbs}}
-                {{total_fat}} -->
-            </h1>
+            <div class="row">
+                <nav class="navbar navbar-expand-lg bg-light" style="max-width: 95vw; margin: 0 auto; margin-bottom: 10px;">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="">
+                            <img src="..\static\flag.jpg" alt="Womp" width="3%" height="3%">
+                            Elon Musk Nerualink Babies
+                        </a>
+                        <ul class="navbar-nav navHeaderCollapse" style="width: 50vw;">
+                            <li class="nav-item">
+                              <a class="nav-link active" style = "color : black" href="/home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" style = "color : black" href="/physical_data">Physicals and Advice</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" style = "color : black" href="/survey_redirect">Health Survey</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" style = "color : black" href="/forum">Forum</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" style = "color : black" href="/diary">Diet Diary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" style="color : black" href="/to_do">To Do List</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/logout">
+                                  <input class="btn btn-outline-danger" type="submit" value="Log out">
+                                </form>
+                              </li>
+                          </ul>
+                    </div>
+                </nav>
+            </div>
             <div class="container mt-5">
                 <h1 class="mb-4">Daily Diet Diary</h1>
 
