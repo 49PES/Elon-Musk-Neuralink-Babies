@@ -15,6 +15,7 @@ def query(sql, extra = None):
 def create_table(name, header):
     query(f"CREATE TABLE IF NOT EXISTS {name} {header}")
 
+
 def setup():
     users_header = ("(username TEXT, password TEXT)")
     create_table("userInfo", users_header)
@@ -97,26 +98,59 @@ def add_reply(id, author, text):
     db.commit()
     db.close()
 
-def get_totalnutrition(username, category):
+def get_totalcalories(username):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-    query = "SELECT {} FROM diet_info WHERE username = ?".format(category)
-    c.execute(query, (username,))
+    query = f"SELECT calories FROM diet_info WHERE username = ?"
+    res = c.execute(query, (username,))
+    out = res.fetchall()
     db.commit()
     db.close()
+    return out
+
+def get_totalprotein(username):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    query = f"SELECT protein FROM diet_info WHERE username = ?"
+    res = c.execute(query, (username,))
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
+
+def get_totalcarbs(username):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    query = f"SELECT carbs FROM diet_info WHERE username = ?"
+    res = c.execute(query, (username,))
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
+
+def get_totalfat(username):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False)
+    c = db.cursor()
+    query = f"SELECT fat FROM diet_info WHERE username = ?"
+    res = c.execute(query, (username,))
+    out = res.fetchall()
+    db.commit()
+    db.close()
+    return out
 
 def add_nutrition(username, calories, protein, carbs, fat):
     db = sqlite3.connect(DB_FILE, check_same_thread=False)
     c = db.cursor()
-
-    calories_query = "UPDATE diet_info SET calories = calories + {} WHERE username = ?".format(calories)
-    c.execute(calories_query, (username,))
-    protein_query = "UPDATE diet_info SET protein = protein + {} WHERE username = ?".format(protein)
-    c.execute(protein_query, (username,))
-    carbs_query = "UPDATE diet_info SET carbs = carbs + {} WHERE username = ?".format(carbs)
-    c.execute(carbs_query, (username,))
-    fat_query = "UPDATE diet_info SET fat = fat + {} WHERE username = ?".format(fat)
-    c.execute(fat_query, (username,))
+    
+    # calories_query = "UPDATE diet_info SET calories = calories + {} WHERE username = ?".format(calories)
+    # c.execute(calories_query, (username,))
+    # protein_query = "UPDATE diet_info SET protein = protein + {} WHERE username = ?".format(protein)
+    # c.execute(protein_query, (username,))
+    # carbs_query = "UPDATE diet_info SET carbs = carbs + {} WHERE username = ?".format(carbs)
+    # c.execute(carbs_query, (username,))
+    # fat_query = "UPDATE diet_info SET fat = fat + {} WHERE username = ?".format(fat)
+    # c.execute(fat_query, (username,))
+    query("INSERT INTO diet_info (username, calories, protein, carbs, fat) VALUES (?, ?, ?, ?, ?)", (username, calories, protein, carbs, fat))
 
     db.commit()
     db.close()
@@ -125,7 +159,7 @@ def add_nutrition(username, calories, protein, carbs, fat):
 def add_account(username, password):
     if not(account_exists(username)):
         query("INSERT INTO userInfo VALUES (?, ?)", (username, password))
-        query("INSERT INTO diet_info VALUES (?)", (username,))
+        query("INSERT INTO diet_info (username) VALUES (?)", (username,))
     else:
         return -1
 
@@ -157,6 +191,3 @@ def get_user_stories():
         titles.append(story)
     return titles
 
-db = sqlite3.connect(DB_FILE, check_same_thread=False)
-c = db.cursor()
-print(c.execute("SELECT username from diet_info"))

@@ -122,7 +122,6 @@ def diary():
         input_text = request.form["foodName"]
         print(input_text)
     food_contents = api.get_nutrition(input_text)
-    print(food_contents)
     print(type(food_contents))
 
     food_calories = food_contents[0]["calories"]
@@ -131,12 +130,37 @@ def diary():
     food_fat = food_contents[0]["fat_total_g"]
 
     db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
-    total_calories = db_tools.get_totalnutrition(username, "calories")
-    total_protein = db_tools.get_totalnutrition(username, "protein")
-    total_carbs = db_tools.get_totalnutrition(username, "carbs")
-    total_fat = db_tools.get_totalnutrition(username, "fat")
+    x = db_tools.get_table_list('diet_info')
 
-    return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
+    total_calories = db_tools.get_totalcalories(username)
+    sum_calories = 0
+    for i in total_calories:
+        sum_calories += i[0]
+    sum_calories = int(sum_calories)
+    print(sum_calories)
+
+    total_protein = db_tools.get_totalprotein(username)
+    sum_protein = 0
+    for i in total_protein:
+        sum_protein += i[0]
+    sum_protein = int(sum_protein)
+    print(sum_protein)
+
+    total_carbs = db_tools.get_totalcarbs(username)
+    sum_carbs = 0
+    for i in total_carbs:
+        sum_carbs += i[0]
+    sum_carbs = int(sum_carbs)
+    print(sum_carbs)
+
+    total_fat = db_tools.get_totalfat(username)
+    sum_fat = 0
+    for i in total_fat:
+        sum_fat += i[0]
+    sum_fat = int(sum_fat)
+    print(sum_fat)
+
+    return render_template('diary.html', total_calories=sum_calories, total_protein=sum_protein, total_carbs=sum_carbs, total_fat=sum_fat)
     # return render_template('diary.html')
     
 

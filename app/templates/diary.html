@@ -6,13 +6,20 @@
     </head>
     <div class="container mt-5">
         <body>
+            <h1>
+                {{x}}
+                <!-- {{total_calories}}
+                {{total_protein}}
+                {{total_carbs}}
+                {{total_fat}} -->
+            </h1>
             <div class="container mt-5">
                 <h1 class="mb-4">Daily Diet Diary</h1>
 
                 <table class="table" id="totalNutrition">
                     <thead>
                       <tr>
-                        <th>Nutrition</th>
+                        <th>Nutrition (g)</th>
                         <th>Calories</th>
                         <th>Protein</th>
                         <th>Carbs</th>
@@ -33,36 +40,10 @@
                 <form action="/diary" id="mealForm" method="POST">
                   <div class="mb-3">
                     <label for="foodName" class="form-label">Food Name</label>
-                    <input type="text" class="form-control" name ="foodName" id="foodName" required>
+                    <input type="text" class="form-control" name ="foodName" placeholder="you can enter the specific amount" id="foodName" required>
                   </div>
                   <button type="submit" class="btn btn-primary">Add to Diary</button>
                 </form>
-                
-                <table class="table mt-4" id="Breakfast">
-                    <thead>
-                        <th>Breakfast</th>
-                    </thead>
-                </table>
-
-                <table class="table mt-4" id="Lunch">
-                    <thead>
-                        <th>Lunch</th>
-                    </thead>
-                </table>
-
-                <table class="table mt-4" id="Dinner">
-                    <thead>
-                        <th>Dinner</th>
-                    </thead>
-                </table>
-
-                <table class="table mt-4" id="Breakfast">
-                    <thead>
-                        <th>Snacks</th>
-                    </thead>
-                </table>
-
-
     </body>
 </html>
 
