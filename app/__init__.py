@@ -151,12 +151,11 @@ def forum():
         text = request.form['posttext']
         db_tools.add_story(title, session.get('username'), text)
         user_inputs = db_tools.get_user_stories()
-        print(user_inputs)
-        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
+        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies, account = session.get('username'))
     else:
         user_inputs = db_tools.get_user_stories()
         print(user_inputs)
-        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies)
+        return render_template("forum.html",arr=user_inputs, numbposts = len(user_inputs), numbreplies = forumreplies, account = session.get('username'))
     
 @app.route("/forum/<id>", methods=['GET','POST'])
 def fpost(id):
@@ -167,12 +166,12 @@ def fpost(id):
         info = db_tools.get_posts_row(id)
         db_tools.add_reply(id, session.get('username'), text)
         replies = db_tools.get_reply_row(id)
-        return render_template("forumpost.html", arr = info, replies = replies, id = id)
+        return render_template("forumpost.html", arr = info, replies = replies, id = id, account = session.get('username'))
     else:
         info = db_tools.get_posts_row(id)
         user_inputs = db_tools.get_user_stories()
         replies = db_tools.get_reply_row(id)
-        return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id)
+        return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id, account = session.get('username'))
 
 
 if __name__ == '__main__':
