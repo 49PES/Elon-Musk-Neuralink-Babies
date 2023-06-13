@@ -1,32 +1,40 @@
-let input = document.getElementById("inputText");
+//console.log(data);
+
+// Get the reference to the <ul> element
+var listElement = document.getElementById('list');
+
+// Loop through the events and dynamically create <li> elements
+data.forEach(function(event) {
+  // Create a new list item element
+  var listItem = document.createElement('li');
+  listItem.classList.add('list-group-item');
+  
+  // Set the content of the list item with event details
+//   listItem.textContent = 'ID: ' + event[0] + ', User: ' + event[1] + ', Content: ' + event[2] + ', Points: ' + event[3];
+listItem.innerHTML += listItem.innerHTML += `<div class="my-3 py-3 shadow list-group-item" id="list${event[0]}">
+<div class="row">
+  <div class="col-1">
+    <input class="" type="checkbox" id="check${event[0]}" onclick="done(${event[0]})">
+  </div>
+  <div class="col-6">
+    <span class="h4" id="text${event[0]}">${event[2]}</span>
+  </div>
+  <div class="col-4">
+    <h5>Points: ${event[3]}</h5>
+    <form action="/delete" method="post">
+        <input type="hidden" name="listId" value="${event[0]}">
+        <input type="hidden" name="points" value="${event[3]}">
+        <button type="submit" class="btn btn-dark">Delete</button>
+      </form>
+  </div>
+</div>
+</div>`;
+
+  // Append the list item to the <ul> element
+  listElement.appendChild(listItem);
+});
+
 let list= document.getElementById("list");
-let minimalValue = 1;
-let listNum = 0;
-
-addList=()=>{
-    // get
-    let inputText = filterList(input.value);
-    // set 
-   if (inputText) {
-    list.innerHTML += ` <li class=" my-3 py-3 shadow list-group-item " id="list${listNum}">
-                <div class="row">
-                <div class="col-1">
-                <input class="" type="checkbox" id="check${listNum}" onclick="done(${listNum})">
-                </div>
-                <div class="col-6">
-                    <span class=" h4" id="text${listNum}"> ${inputText} </span>
-                </div>
-                <div class="col-4">
-                     <button class=" btn btn-dark" onclick="deleteList(${listNum})">Delete</button>
-                     <button class=" btn btn-dark" onclick="editList(${listNum})">Edit</button>
-                </div>                  
-                 </div>    
-                </li> `;
-        input.value="";
-        listNum++;
-
-   }
-}
 
 done=(listId)=>{ 
     let checkbox = document.getElementById(`check${listId}`);
@@ -38,38 +46,3 @@ done=(listId)=>{
         current.classList.add("text-decoration-line-through");
     }
 }
-
-filterList=(x)=>{
-       if (x) {
-            if (x.length >= minimalValue) {
-                return x;
-            }
-            else{
-                alert("Please enter more than 1 word")
-            }
-       }
-       else{
-            return false;
-       }
-}
-
-editList=(listId)=>{
-    let currentText = document.getElementById(`text${listId}`);
-    let newText = prompt("Change Entry?",currentText.innerHTML);
-    if (filterList(newText)) {
-        currentText.innerHTML = newText; 
-    }
-}
-
-deleteList=(listId)=>{
-    let current = document.getElementById(`text${listId}`).innerHTML;
-       let deleteComfirm = confirm(`Are you sure you want to delete ${current}`);
-    if (deleteComfirm) {
-         let p = document.getElementById("list")
-        let c = document.getElementById(`list${listId}`);
-        p.removeChild(c);
-    }
-    else{
-        console.log("deleted");
-    }
-};

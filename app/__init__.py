@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import os
 import db_tools
 import api
 from datetime import datetime
@@ -110,7 +109,7 @@ def health_form():
     # Calculate the number of minutes elapsed
     sleep_minutes = time_difference.total_seconds() / 60
     
-    # db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
+    db_tools.add_health_info(date_td, sleep_minutes, calories, exercise)
     health_contents = db_tools.get_table_list("health_info")
     print(health_contents)
     return render_template("home_page.html",health_contents = health_contents)
@@ -126,19 +125,19 @@ def diary():
     print(food_contents)
     print(type(food_contents))
 
-    # food_calories = food_contents[0]["calories"]
-    # food_protein = food_contents[0]["protein_g"]
-    # food_carbs = food_contents[0]["carbohydrates_total_g"]
-    # food_fat = food_contents[0]["fat_total_g"]
+    food_calories = food_contents[0]["calories"]
+    food_protein = food_contents[0]["protein_g"]
+    food_carbs = food_contents[0]["carbohydrates_total_g"]
+    food_fat = food_contents[0]["fat_total_g"]
 
-    # db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
-    # total_calories = db_tools.get_totalnutrition(username, "calories")
-    # total_protein = db_tools.get_totalnutrition(username, "protein")
-    # total_carbs = db_tools.get_totalnutrition(username, "carbs")
-    # total_fat = db_tools.get_totalnutrition(username, "fat")
+    db_tools.add_nutrition(username, food_calories, food_protein, food_carbs, food_fat)
+    total_calories = db_tools.get_totalnutrition(username, "calories")
+    total_protein = db_tools.get_totalnutrition(username, "protein")
+    total_carbs = db_tools.get_totalnutrition(username, "carbs")
+    total_fat = db_tools.get_totalnutrition(username, "fat")
 
-    # return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
-    return render_template('diary.html')
+    return render_template('diary.html', total_calories=total_calories, total_protein=total_protein, total_carbs=total_carbs, total_fat=total_fat)
+    # return render_template('diary.html')
     
 
 @app.route("/forum", methods=['GET','POST'])
@@ -173,6 +172,37 @@ def fpost(id):
         replies = db_tools.get_reply_row(id)
         return render_template("forumpost.html", arr = info, numbposts = len(user_inputs), replies = replies, id = id, account = session.get('username'))
 
+@app.route("/to_do", methods=['GET','POST'])
+def to_do():
+     if request.method == 'POST':
+         if 'username' not in session:
+            return redirect("/login")
+         user = session['username']
+         content = request.form.get("task")
+         #print(content)
+         points = request.form.get("points")
+         db_tools.add_event(user,content,points)
+         events = db_tools.get_user_table_list(user)
+         return render_template("config.html",events = events,user=user,points=completed)
+     else:
+        if 'username' not in session:
+            return redirect("/login")
+        user = session['username']
+        events = db_tools.get_user_table_list(user)
+        return render_template("config.html",events = events,user = user, points=completed)
+
+completed = 0
+
+@app.route('/delete',methods=['POST'])
+def delete():
+    if 'username' not in session:
+        return redirect("/login")
+    global completed
+    list_id = request.form['listId']
+    points = int(request.form['points'])
+    completed += points
+    db_tools.delete(list_id)
+    return redirect("/to_do")
 
 if __name__ == '__main__':
     app.debug = True
